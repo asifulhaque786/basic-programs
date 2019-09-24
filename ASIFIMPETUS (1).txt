@@ -1,0 +1,55 @@
+/*BY TAKING CONSIDERATION OF THE FACT THAT HOUR HANDS MOVE BY .5 DERGEE WHEN A MINUTE PASSES*/
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+     int hour;/*stores the hour*/
+     int minute;/*stores the minute*/
+     float angle_by_hour_hand;/*clockwise direction from + y axis in degrees*/
+     float angle_by_minute_hand;/*clockwise direction from + y axis in degrees*/
+     float angle_between_them;/*stores the angle between them*/
+     int temp1,temp2;/*variables to use operatorts on*/
+     const int MAX_HOUR=12,MIN_HOUR=0;
+     const int MAX_MINUTE=60,MIN_MINUTE=0;
+     const int MULTIPLYING_FACTOR_FOR_HOUR_ROTATES_IN_60_MIN=30;/*DEGREE*/
+     const int MULTIPLYING_FACTOR_FOR_MINUTE_ROTATES_IN_60_SEC=6;/*DEGREE*/
+     const float MULTIPLING_FACTOR_FOR_ONE_MINUTES_ROTATE_EFFECT_ON_HOUR=.5;
+    printf("enter the hour:");
+    scanf("%d",&hour);/*stores the value of hour*/
+    temp1=hour;
+     if(temp1>MAX_HOUR||temp1<MIN_HOUR)
+        {fprintf(stderr,"%d hour is not within range(%d hr,%d hr)",temp1,MIN_HOUR,MAX_HOUR);/*error message*/
+     exit(EXIT_FAILURE);/*program terminates*/
+     }
+     else{
+         hour=temp1;
+         }
+    printf("enter the minute:");
+    scanf("%d",&minute);
+    temp2=minute;
+     if(temp2>=MAX_MINUTE||temp2<MIN_HOUR)
+        {fprintf(stderr,"%d minute is not within range(%d min,%d min)",temp2,MIN_MINUTE,MAX_MINUTE);
+     exit(EXIT_FAILURE);
+     }
+     else{
+         minute=temp2;
+         }
+    angle_by_hour_hand   =hour*MULTIPLYING_FACTOR_FOR_HOUR_ROTATES_IN_60_MIN+minute*MULTIPLING_FACTOR_FOR_ONE_MINUTES_ROTATE_EFFECT_ON_HOUR;
+    angle_by_minute_hand  =minute*MULTIPLYING_FACTOR_FOR_MINUTE_ROTATES_IN_60_SEC;
+    angle_between_them  =angle_by_minute_hand-angle_by_hour_hand;
+    angle_between_them  =abs(angle_between_them);
+    if(angle_between_them>180)
+    {
+    printf("smaller angle between the hour and minute hand at %d:%d is ::%f degree\n",hour,minute,360-angle_between_them);
+     printf("larger angle between the hour and minute hand at %d:%d is ::%f degree",hour,minute,angle_between_them);
+    }
+    else{
+            printf("smaller angle between the hour and minute hand at %d:%d is ::%f degree\n",hour,minute,angle_between_them);
+            printf("larger angle between the hour and minute hand at %d:%d is ::%f degree",hour,minute,360-angle_between_them);
+            }
+
+    return 0;
+
+
+}
