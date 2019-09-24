@@ -1,0 +1,73 @@
+/*enter the data without spaces*/
+#include <stdio.h>
+#include <stdlib.h>
+#include<ctype.h>
+#include<time.h>
+int randomx;/*for storing the pin for encrpted code*/
+int permanenty;/*for storing the pin for use in decryption*/
+char messege[1200];/*entered message*/
+int i;/*counter for array*/
+const int total_type_of_encrpt=30;
+char temp;
+int temp2;
+char temp3;
+
+void generator()
+{
+    srand(time(0));
+do
+{
+ randomx=rand()%total_type_of_encrpt;}
+while(randomx==1||randomx==0);
+temp2=randomx;
+}
+int pin()
+{return randomx;
+}
+int decrptpin()
+     {
+    
+        permanenty=temp2;
+        return permanenty;
+     }
+char encrpt()
+     {
+    
+printf("enter the message::\t\n");
+    scanf("%s",messege);
+         
+    for(i=0;i<1200;i++)
+    {
+        if(messege[i]=='\0')
+        {break;}
+        temp=toupper(messege[i]);
+      temp+=pin();
+        messege[i]=temp;
+        }
+    printf("%s\n",messege);}
+void decrpt()
+     {
+printf("enter the ENCRyPTED message case sensitive::\t\n");
+    scanf("%s",messege);
+    for(i=0;i<1200;i++)
+    {
+        if(messege[i]=='\0')
+        {break;}
+        temp=toupper(messege[i]);
+        temp3=messege[i];
+      temp3-=decrptpin();
+        messege[i]=temp3;
+    }
+    printf("%s\n",messege);}
+
+
+int main()
+{
+    printf("ENTER THE DATA WITHOUT SPACES\n");
+     generator();
+     encrpt();
+     decrpt();
+    
+    
+    return 0;
+     }
